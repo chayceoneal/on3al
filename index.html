@@ -96,9 +96,69 @@
         font-weight: 600;
         margin-top: 1rem;
       }
+
+      .verification-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(to right, #f9f9f9, #f0f0f0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .verification-content {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 1rem;
+        padding: 3rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 90%;
+      }
+
+      .verification-content h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #111;
+      }
+
+      .verification-content p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .verification-note {
+        font-size: 0.9rem;
+        color: #777;
+        margin-top: 1.5rem;
+        font-style: italic;
+      }
     </style>
   </head>
   <body>
+    <!-- Verification Gate -->
+    <div id="verification-gate" class="verification-screen">
+      <div class="verification-content">
+        <h1>Welcome to Chayce O'Neal's Site</h1>
+        <p>Please complete the security verification below to access the site content.</p>
+        <div class="turnstile-container">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAB79G6gBoVRiBzwM" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
+        </div>
+        <p class="verification-note">This helps protect the site from automated crawlers.</p>
+      </div>
+    </div>
+
+    <!-- Main Content (Hidden until verified) -->
+    <div id="main-content" style="display: none;">
     <header data-aos="fade-down">
       <h1>Chayce O'Neal 👋</h1>
       <p>Building scalable corporate technology solutions for hypergrowth startups.</p>
@@ -134,19 +194,12 @@
       </p>
     </div>
 
-    <div class="section" data-aos="fade-up">
-      <h2>Security Check</h2>
-      <p>Please complete the security verification below to help protect this site from automated crawlers.</p>
-      <div class="turnstile-container">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB79G6gBoVRiBzwM" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
-      </div>
-    </div>
-
     <footer>
       &copy; 2025 Chayce O'Neal. Built with love ❤️
       <br>
       <a href="https://linkedin.com/in/chayceoneal" target="_blank" style="color: #0077b5; text-decoration: none; margin-top: 0.5rem; display: inline-block;">Contact Me</a>
     </footer>
+    </div> <!-- End main-content -->
 
     <script>
       AOS.init({
@@ -158,32 +211,34 @@
       // Turnstile CAPTCHA callbacks
       function onTurnstileSuccess(token) {
         console.log('Turnstile verification successful');
-        // You can add additional logic here if needed
-        // For example, show a success message or enable certain features
-        showVerificationSuccess();
+        
+        // Hide verification gate and show main content
+        const verificationGate = document.getElementById('verification-gate');
+        const mainContent = document.getElementById('main-content');
+        
+        // Add a brief success animation
+        verificationGate.style.opacity = '0';
+        verificationGate.style.transition = 'opacity 0.5s ease-out';
+        
+        setTimeout(() => {
+          verificationGate.style.display = 'none';
+          mainContent.style.display = 'block';
+          
+          // Initialize AOS animations for the newly visible content
+          AOS.refresh();
+        }, 500);
       }
 
       function onTurnstileExpired() {
         console.log('Turnstile token expired');
-        // Handle token expiration
+        // Token expired - could reload the widget or show a message
+        alert('Verification expired. Please try again.');
       }
 
       function onTurnstileError(error) {
         console.log('Turnstile error:', error);
-        // Handle errors
-      }
-
-      function showVerificationSuccess() {
-        const container = document.querySelector('.turnstile-container');
-        const successDiv = document.createElement('div');
-        successDiv.className = 'turnstile-success';
-        successDiv.innerHTML = '✅ Verification successful! Thank you for helping protect this site.';
-        container.appendChild(successDiv);
-        
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          successDiv.remove();
-        }, 5000);
+        // Handle errors - could show a message or reload the widget
+        alert('Verification failed. Please try again.');
       }
     </script>
   </body>
