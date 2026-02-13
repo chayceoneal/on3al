@@ -1,0 +1,22 @@
+window.galleryPhotos = [
+  "photos/DJI_0132.jpeg",
+  "photos/DSCF6989.jpeg",
+  "photos/DSCF6993.jpeg",
+  "photos/DSCF7079.jpeg",
+  "photos/IMG_5868.jpeg",
+  "photos/IMG_5872.jpeg",
+  "photos/IMG_5931.jpeg",
+  "photos/IMG_6308.jpeg",
+  "photos/IMG_6338.jpeg",
+  "photos/IMG_6348.jpeg",
+  "photos/IMG_6400.jpeg",
+  "photos/IMG_6420.jpeg",
+  "photos/IMG_6466.jpeg",
+  "photos/IMG_6512.jpeg",
+  "photos/IMG_6558.jpeg",
+  "photos/IMG_6594.jpeg",
+  "photos/IMG_6701.jpeg",
+  "photos/IMG_6802.jpeg",
+  "photos/IMG_6906.jpeg",
+  "photos/IMG_6941.jpeg"
+];

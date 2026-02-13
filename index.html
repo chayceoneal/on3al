@@ -1,164 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chayce O'Neal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
-    <!-- End Cloudflare Web Analytics -->
-    
-    <!-- Cloudflare Turnstile CAPTCHA -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <!-- End Cloudflare Turnstile CAPTCHA -->
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      body {
-        font-family: 'Inter', sans-serif;
-        background: linear-gradient(to right, #f9f9f9, #f0f0f0);
-        color: #111;
-        line-height: 1.6;
-        padding: 2rem;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chayce O'Neal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description"
+    content="Building scalable technology solutions for hypergrowth startups. Technologist with over a decade of experience in corporate IT and leadership.">
+  <meta property="og:title" content="Chayce O'Neal">
+  <meta property="og:description" content="Building scalable technology solutions for hypergrowth startups.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chayce.me/">
+  <meta property="og:image" content="https://chayce.me/og-image.jpg">
+  <!-- Replace with actual image URL if available -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+    data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 
-      header {
-        text-align: center;
-        margin-bottom: 4rem;
-      }
+  <!-- Cloudflare Turnstile CAPTCHA -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <!-- End Cloudflare Turnstile CAPTCHA -->
 
-      header h1 {
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-      }
+</head>
 
-      header p {
-        font-size: 1.25rem;
-        color: #555;
-      }
-
-      .section {
-        max-width: 700px;
-        margin: 2rem auto;
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 1rem;
-        padding: 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      }
-
-      .section h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-      }
-
-      .section p {
-        font-size: 1rem;
-        color: #333;
-      }
-
-      footer {
-        text-align: center;
-        margin-top: 4rem;
-        font-size: 0.875rem;
-        color: #777;
-      }
-
-      .turnstile-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 1.5rem;
-        padding: 1rem;
-      }
-
-      .cf-turnstile {
-        border-radius: 0.5rem;
-        overflow: hidden;
-      }
-
-      .turnstile-success {
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.3);
-        border-radius: 0.5rem;
-        padding: 1rem;
-        text-align: center;
-        color: #166534;
-        font-weight: 600;
-        margin-top: 1rem;
-      }
-
-      .verification-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(to right, #f9f9f9, #f0f0f0);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-      }
-
-      .verification-content {
-        text-align: center;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 1rem;
-        padding: 3rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        max-width: 500px;
-        width: 90%;
-      }
-
-      .verification-content h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: #111;
-      }
-
-      .verification-content p {
-        font-size: 1.1rem;
-        color: #555;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-      }
-
-      .verification-note {
-        font-size: 0.9rem;
-        color: #777;
-        margin-top: 1.5rem;
-        font-style: italic;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Verification Gate -->
-    <div id="verification-gate" class="verification-screen">
-      <div class="verification-content">
-        <h1>Oh hi there, are you a robot? 🤖</h1>
-        <p>Please complete the security verification below to access the site content.</p>
-        <div class="turnstile-container">
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAAB79G6gBoVRiBzwM" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
-        </div>
-        <p class="verification-note">This helps protect the site from automated crawlers. Plus, it was fun to build. ;)</p>
+<body>
+  <!-- Verification Gate -->
+  <div id="verification-gate" class="verification-screen">
+    <div class="verification-content">
+      <h1>Oh hi there, are you a robot? 🤖</h1>
+      <p>Please complete the security verification below to access the site content.</p>
+      <div class="turnstile-container">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB79G6gBoVRiBzwM" data-callback="onTurnstileSuccess"
+          data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
       </div>
+      <p class="verification-note">This helps protect the site from automated crawlers. Plus, it was fun to build. ;)
+      </p>
     </div>
+  </div>
 
-    <!-- Main Content (Hidden until verified) -->
-    <div id="main-content" style="display: none;">
+  <!-- Main Content (Hidden until verified) -->
+  <div id="main-content" style="display: none;">
     <header data-aos="fade-down">
       <h1>Chayce O'Neal 👋</h1>
       <p>Building scalable technology solutions for hypergrowth startups.</p>
@@ -167,79 +54,68 @@
     <div class="section" data-aos="fade-up">
       <h2>About Me</h2>
       <p>
-        I'm a technologist with over a decade of corporate IT and leadership experience. I’ve scaled systems and people at startups. My focus is on building systems that disappear into the background. Seamless SaaS integrations, resilient compliance, and zero-friction internal tools.
+        I'm a technologist with over a decade of corporate IT and leadership experience. I’ve scaled systems and people
+        at startups. My focus is on building systems that disappear into the background. Seamless SaaS integrations,
+        resilient compliance, and zero-friction internal tools.
       </p>
     </div>
 
     <div class="section" data-aos="fade-up">
       <h2>What I Bring to the Table</h2>
-      <p>
-        ✅ Experience leading lean, high-output teams in hypergrowth environments<br />
-        ✅ Strong intuition for system design, automation, and security<br />
-        ✅ Passion for clean processes and calm operations<br />
-        ✅ Deep belief in using tools that help people work better
-      </p>
+      <ul class="skill-list">
+        <li>Experience leading lean, high-output teams in hypergrowth environments</li>
+        <li>Strong intuition for system design, automation, and security</li>
+        <li>Passion for clean processes and calm operations</li>
+        <li>Deep belief in using tools that help people work better</li>
+      </ul>
     </div>
 
     <div class="section" data-aos="fade-up">
       <h2>Now</h2>
       <p>
-        I'm helping lay the foundation of IT at a startup that is paving the way for what the standards will be with identity and governance. Interested in discussing IGA, technology in general, maybe the latest dish you cooked? Let's chat.      </p>
+        A whirlwind of events. We sold our home and drove across the US with just our van and a trailer full of house
+        plants to find our next home. Then life threw us a curveball with my wife’s mom’s health which landed us in an
+        unexpected spot. I’m stepping back from work in tech, pouring energy into family in Czechia. We’re embracing
+        European landscapes, family time, and present-moment living.
+        <br><br>
+        <!-- Hiding for now. Future agent: see .agent/workflows/publish-story.md to publish -->
+        <!-- <a href="story.html" class="link-highlight">Read the full story of how we got here →</a> -->
+      </p>
     </div>
 
     <div class="section" data-aos="fade-up">
       <h2>Additionally</h2>
       <p>
-        I'm a dad and an adventurer at heart. My most cherished moments come from exploring every corner of America in our van with my family and our 70-pound dog. Those journeys continue to teach us how to live simply and communicate more openly, all while discovering new places and strengthening our bond. When I'm not on the road, you'll find me in the kitchen, creating some of our favorite fusion dishes and sharing them with loved ones. Interested in how to work while living in a van? I'd love to talk about it.
+        I’m an RVer enthusiast who loves traveling, seeing new places, experiencing culture and cuisine. A true nomad at
+        heart. I focus on family: my little one in her toddler era, my doodle who thinks he’s a lap dog at 34 kilos and
+        my wife who holds everything together. I love cooking, hiking, playing video games, reading and learning. I’m
+        also rekindling my passion for being in the air, diving into the aeronaut community. I really like data and
+        discovering everything I can about any topic.
       </p>
     </div>
 
+    <div class="section" data-aos="fade-up">
+      <h2>Connect</h2>
+      <p>
+        I'm always open to interesting conversations and new opportunities. Reach out via LinkedIn or send an email my
+        way.
+      </p>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/chayceoneal" target="_blank" class="contact-btn linkedin">
+          LinkedIn
+        </a>
+        <a href="mailto:hello@on3al.org" class="contact-btn email">
+          Email Me
+        </a>
+      </div>
+    </div>
+
     <footer>
-      &copy; 2025 Chayce O'Neal. Built with love ❤️
-      <br>
-      <a href="https://linkedin.com/in/chayceoneal" target="_blank" style="color: #0077b5; text-decoration: none; margin-top: 0.5rem; display: inline-block;">Contact Me</a>
+      &copy; 2026 Chayce O'Neal. Built with ❤️
     </footer>
-    </div> <!-- End main-content -->
+  </div> <!-- End main-content -->
 
-    <script>
-      AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-      });
+  <script src="script.js"></script>
+</body>
 
-      // Turnstile CAPTCHA callbacks
-      function onTurnstileSuccess(token) {
-        console.log('Turnstile verification successful');
-        
-        // Hide verification gate and show main content
-        const verificationGate = document.getElementById('verification-gate');
-        const mainContent = document.getElementById('main-content');
-        
-        // Add a brief success animation
-        verificationGate.style.opacity = '0';
-        verificationGate.style.transition = 'opacity 0.5s ease-out';
-        
-        setTimeout(() => {
-          verificationGate.style.display = 'none';
-          mainContent.style.display = 'block';
-          
-          // Initialize AOS animations for the newly visible content
-          AOS.refresh();
-        }, 500);
-      }
-
-      function onTurnstileExpired() {
-        console.log('Turnstile token expired');
-        // Token expired - could reload the widget or show a message
-        alert('Verification expired. Please try again.');
-      }
-
-      function onTurnstileError(error) {
-        console.log('Turnstile error:', error);
-        // Handle errors - could show a message or reload the widget
-        alert('Verification failed. Please try again.');
-      }
-    </script>
-  </body>
 </html>

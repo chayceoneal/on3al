@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adventures | Chayce O'Neal</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="A gallery of adventures and travels from Chayce O'Neal and family.">
+    <meta property="og:title" content="Chayce O'Neal - Photos">
+    <meta property="og:description" content="A gallery of adventures and travels.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chayce.me/photos.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+
+    <!-- Cloudflare Turnstile CAPTCHA -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- End Cloudflare Turnstile CAPTCHA -->
+</head>
+
+<body>
+    <!-- Verification Gate -->
+    <div id="verification-gate" class="verification-screen">
+        <div class="verification-content">
+            <h1>Unlock Memories 📸</h1>
+            <p>Please complete the security verification to view the gallery.</p>
+            <div class="turnstile-container">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAB79G6gBoVRiBzwM" data-callback="onTurnstileSuccess"
+                    data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until verified) -->
+    <div id="main-content" style="display: none;">
+        <header data-aos="fade-down">
+            <h1>Adventures 📸</h1>
+            <p>A glimpse into our nomadic life across America and Europe.</p>
+        </header>
+
+        <div class="section" data-aos="fade-up">
+            <div class="gallery-grid">
+                <!-- Photo items will be injected here by script.js -->
+                <noscript>Please enable JavaScript to view the gallery.</noscript>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-up">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+
+        <footer>
+            &copy; 2026 Chayce O'Neal. Built with love ❤️
+        </footer>
+    </div> <!-- End main-content -->
+
+    <script src="photos_data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
