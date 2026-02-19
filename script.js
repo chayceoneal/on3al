@@ -60,7 +60,7 @@ function initNavigation() {
     const btn = document.createElement('button');
     btn.className = 'hamburger-btn';
     btn.innerHTML = '🍔';
-    btn.ariaLabel = 'Menu';
+    btn.setAttribute('aria-label', 'Menu');
     document.body.appendChild(btn);
 
     // 2. Create Overlay
@@ -91,7 +91,6 @@ function initNavigation() {
         isOpen = !isOpen;
         if (isOpen) {
             overlay.classList.add('open');
-            btn.innerHTML = '🙅‍♂️';
             btn.innerHTML = '❌';
         } else {
             overlay.classList.remove('open');
@@ -118,6 +117,9 @@ function initLightbox() {
     // Inject Lightbox HTML
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox-overlay';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', 'Photo viewer');
     lightbox.innerHTML = `
         <button class="lightbox-close" aria-label="Close">&times;</button>
         <button class="lightbox-nav lightbox-prev" aria-label="Previous">❮</button>
@@ -173,6 +175,25 @@ function initLightbox() {
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowLeft') changeImage(-1);
         if (e.key === 'ArrowRight') changeImage(1);
+
+        // Focus trap
+        if (e.key === 'Tab') {
+            const focusableElements = lightbox.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
     });
 
     // Touch Swipe Logic
@@ -205,6 +226,7 @@ function initLightbox() {
         img.style.opacity = '1';
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden'; // Lock scroll
+        closeBtn.focus(); // Focus the close button for accessibility
     };
 }
 
