@@ -17,27 +17,12 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- Cloudflare Turnstile CAPTCHA -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <!-- End Cloudflare Turnstile CAPTCHA -->
 
 </head>
 
 <body>
-  <!-- Verification Gate -->
-  <div id="verification-gate" class="verification-screen">
-    <div class="verification-content">
-      <h1>Welcome</h1>
-      <p>Please complete the verification below to access the site.</p>
-      <div class="turnstile-container">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB79G6gBoVRiBzwM" data-callback="onTurnstileSuccess"
-          data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Content (Hidden until verified) -->
-  <div id="main-content" style="display: none;">
+  <!-- Main Content -->
+  <div id="main-content">
     <header data-aos="fade-down">
       <h1>Chayce O'Neal 👋</h1>
       <p>Building scalable technology solutions for hypergrowth startups.</p>
