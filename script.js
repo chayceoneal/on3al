@@ -7,6 +7,21 @@ AOS.init({
 
 // Turnstile CAPTCHA callbacks
 
+// Check if already verified this session
+function checkVerification() {
+    if (sessionStorage.getItem('siteVerified') === 'true') {
+        const verificationGate = document.getElementById('verification-gate');
+        const mainContent = document.getElementById('main-content');
+        if (verificationGate && mainContent) {
+            verificationGate.style.display = 'none';
+            mainContent.style.display = 'block';
+            setTimeout(() => AOS.refresh(), 100);
+        }
+        return true;
+    }
+    return false;
+}
+
 // Auto-bypass for local development
 if (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -19,10 +34,18 @@ if (window.location.protocol === 'file:' || window.location.hostname === 'localh
             setTimeout(() => AOS.refresh(), 100);
         }
     });
+} else {
+    // Check session storage for non-local environments
+    document.addEventListener('DOMContentLoaded', () => {
+        checkVerification();
+    });
 }
 
 function onTurnstileSuccess(token) {
     console.log('Turnstile verification successful');
+
+    // Store verification in session storage
+    sessionStorage.setItem('siteVerified', 'true');
 
     // Hide verification gate and show main content
     const verificationGate = document.getElementById('verification-gate');
@@ -45,6 +68,7 @@ function onTurnstileSuccess(token) {
 
 function onTurnstileExpired() {
     console.log('Turnstile token expired');
+    sessionStorage.removeItem('siteVerified');
     alert('Verification expired. Please try again.');
 }
 
